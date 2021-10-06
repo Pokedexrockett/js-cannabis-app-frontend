@@ -22,6 +22,8 @@ class Strain {
         <div data-id="${this.id}">
         <h2 class="name">${this.name}</h2>
         <p class="category">${this.category}</p>
+        <p class="thc">${this.thc}</p>
+        <p class="cbd">${this.cbd}</p>
         </div>
         `
         return this.element
