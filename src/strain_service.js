@@ -27,10 +27,21 @@ class StrainService {
 
             }
         }
+        const configObject = {
+            method: 'POST', 
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(strainInfo)
+        }
 
-        debugger
-        fetch(this.port + `/strains`)
+        
+        fetch(this.port + `/strains`, configObject)
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            const s = new Strain(data)
+            s.attachToDom()
+        })
     }
 }

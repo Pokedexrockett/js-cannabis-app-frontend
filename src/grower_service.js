@@ -10,7 +10,7 @@ class GrowerService {
             json.forEach(element => {
                 
                 const g = new Grower(element)
-                
+                g.addToDropDown()
             })
         })
     }
