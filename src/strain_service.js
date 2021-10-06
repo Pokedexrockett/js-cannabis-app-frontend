@@ -14,4 +14,22 @@ class StrainService {
         })
         .catch()
     }
+
+    createStrains(){
+        const strainInfo = {
+            
+            strain: {
+                name: nameValue.value,
+                category: descriptionValue.value,
+                grower_id: 
+
+            }
+        }
+
+        debugger
+
+        fetch(this.port + `/strains`)
+        .then(response => response.json())
+        .then(data => console.log(data))
+    }
 }
