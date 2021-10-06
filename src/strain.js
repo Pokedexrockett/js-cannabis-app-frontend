@@ -12,6 +12,7 @@ class Strain {
         this.element = document.createElement('li');
         this.element.dataset['id'] = id;
         this.element.id = `strain-${id}`;
+        this.element.addEventListener('click', this.handleClick)
         Strain.all.push(this)
         
 
@@ -24,9 +25,22 @@ class Strain {
         <p class="category">${this.category}</p>
         <p class="thc">${this.thc}</p>
         <p class="cbd">${this.cbd}</p>
+        <button class="edit" data-id=${this.id}>Edit Strain</button>
+        <button class="delete" data-id=${this.id}>Delete Strain</button>
+
         </div>
         `
         return this.element
+    }
+
+    handleClick(e){
+        if(e.target.innerText === "Edit Strain"){
+            console.log(e.target)
+        }else if(e.target.innerText === "Delete Strain"){
+            console.log(e.target)
+        }else if(e.target.innerText === "Save Strain"){
+
+        }
     }
 
     attachToDom(){
