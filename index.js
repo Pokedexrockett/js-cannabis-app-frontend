@@ -3,6 +3,7 @@
  const growerCall = new GrowerService(port);
  const form = document.getElementById("strain-form");
  const dropDown = document.getElementById("grower-dropdown");
+ const growerInput = document.getElementById('grower-id')
  const nameValue = document.getElementById('strain-name')
  const categoryValue = document.getElementById('strain-category');
  const thcValue = document.getElementById('strain-thc');

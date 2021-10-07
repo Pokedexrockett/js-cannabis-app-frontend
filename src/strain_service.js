@@ -23,7 +23,7 @@ class StrainService {
                 category: categoryValue.value,
                 thc: thcValue.value,
                 cbd: cbdValue.value,
-                grower_id: dropDown.value
+                // grower_id: dropDown.value
 
             }
         }
