@@ -25,6 +25,7 @@ class Strain {
         <p class="category">${this.category}</p>
         <p class="thc">${this.thc}</p>
         <p class="cbd">${this.cbd}</p>
+        <p class="grower">${this.grower.name}</p>
         </div>
         <button class="edit" data-id=${this.id}>Edit Strain</button>
         <button class="delete" data-id=${this.id}>Delete Strain</button>

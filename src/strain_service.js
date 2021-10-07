@@ -23,14 +23,14 @@ class StrainService {
                 category: categoryValue.value,
                 thc: thcValue.value,
                 cbd: cbdValue.value,
-                // grower_id: dropDown.value
-                grower_name: growerInput.value
+                grower_id: dropDown.value
+                // grower_name: growerInput.value
 
             }
             
         }
 
-        debugger
+        // debugger
         const configObject = {
             method: 'POST', 
             headers: {
