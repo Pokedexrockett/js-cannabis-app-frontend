@@ -18,6 +18,7 @@
  function handleSubmit(e){
      e.preventDefault();
      strainCall.createStrains()
+     growerCall.createGrowers()
      
  }
  
