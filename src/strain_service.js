@@ -44,4 +44,40 @@ class StrainService {
             s.attachToDom()
         })
     }
+    updateStrain(strain){
+        const {name, category, thc, cbd, id} = strain
+        const strainInfo = {
+            name,
+            category,
+            thc,
+            cbd
+        }
+
+        const configObject = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(strainInfo)
+        }
+        
+        fetch(`${this.port}/strains/${id}`, configObject)
+        .then( strain.render() )
+        // .then(data => {
+        //     // const s = new Strain(data)
+        //     strain.render()
+        // })
+        
+    }
+
+    deleteStrain(e){
+        const id = e.target.dataset.id
+        e.target.parentElement.remove()
+        fetch(`${this.port}/strains/${id}`, {method: 'DELETE'})
+        .then(response => response.json())
+        .then(json => alert(json.message))
+    }
+   
+
 }
