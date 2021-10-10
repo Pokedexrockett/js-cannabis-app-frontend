@@ -14,17 +14,16 @@ class StrainService {
         })
         .catch()
     }
-
+    
     createStrains(){
+        // debugger
         const strainInfo = {
-            
             strain: {
                 name: nameValue.value,
                 category: categoryValue.value,
                 thc: thcValue.value,
                 cbd: cbdValue.value,
-                grower_id: dropDown.value
-                // grower_name: growerInput.value
+                grower_id: dropDown.value,
 
             }
             
