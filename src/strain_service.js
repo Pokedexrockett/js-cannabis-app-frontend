@@ -48,13 +48,19 @@ class StrainService {
         })
     }
     updateStrain(strain){
+        
         const {name, category, thc, cbd, id} = strain
+        const strainContainer = document.getElementById(`strain-container-${id}`)
         const strainInfo = {
-            name,
-            category,
-            thc,
-            cbd
+            name: strainContainer.querySelector(".edit-name").value,
+            category: strainContainer.querySelector(".edit-category").value,
+            thc: strainContainer.querySelector(".edit-thc").value,
+            cbd: strainContainer.querySelector(".edit-cbd").value
         }
+        // this.name = this.element.querySelector(".edit-name").value;
+        // this.category = this.element.querySelector(".edit-category").value;
+        // this.thc = this.element.querySelector(".edit-thc").value;
+        // this.cbd = this.element.querySelector(".edit-cbd").value;
 
         const configObject = {
             method: "PATCH",
@@ -66,7 +72,15 @@ class StrainService {
         }
         
         fetch(`${this.port}/strains/${id}`, configObject)
-        .then( strain.render() )
+        .then(res => res.json())
+        .then(strainObject => {
+     
+         strain.name = strainObject.name  
+         strain.category = strainObject.category
+         strain.thc = strainObject.thc
+         strain.cbd = strainObject.cbd
+         strain.render() 
+        } )
         // .then(data => {
         //     // const s = new Strain(data)
         //     strain.render()

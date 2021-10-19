@@ -12,15 +12,20 @@ class Strain {
         this.element = document.createElement('li');
         this.element.dataset['id'] = id;
         this.element.id = `strain-${id}`;
-        this.element.addEventListener('click', this.handleClick)
+        // this.element.addEventListener('click', this.handleClick)
         Strain.all.push(this)
         
 
     }
 
+    static findById(id){
+        return Strain.all.find(strain => strain.id === parseInt(id))
+    }
+
+
     render(){
         this.element.innerHTML = `
-        <div data-id="${this.id}">
+        <div data-id="${this.id}" id="strain-container-${this.id}">
         <h2 class="name">${this.name}</h2>
         <p class="category">${this.category}</p>
         <p class="thc">${this.thc}</p>
@@ -32,24 +37,41 @@ class Strain {
 
         
         `
+        this.element.querySelector(".edit").addEventListener("click", this.createEditForm)
         return this.element
     }
 
     createEditForm(){
-        const div = this.element.querySelector('div');
-        for(const element of div.children){
-            let inputValue = element.innerText;
-            let name = element.classList[0]
-            element.outerHTML = `<input type="text"  class="edit-${name}" value="${inputValue}" />`
-        }
-        
+        // debugger
+        const div =document.getElementById(`strain-container-${this.dataset.id}`);
+        const strain = Strain.findById(this.dataset.id)
+        // for(const element of div.children){
+        //     let inputValue = element.innerText;
+        //     let name = element.classList[0]
+        //     element.outerHTML = `<input type="text"  class="edit-${name}" value="${inputValue}" />`
+        // }
+        const editForm = document.createElement("form")
+        editForm.innerHTML = `
+        <input type="text" class="edit-name" value="${strain.name}">
+        <input type="text" class="edit-category" value="${strain.category}">
+        <input type="text" class="edit-thc" value="${strain.thc}">
+        <input type="text" class="edit-cbd" value="${strain.cbd}">
+        <input type="text" class="edit-grower" value="${strain.grower.name}">
+        <input type="submit" value="save">
+        `
+        div.appendChild(editForm)
+
+        editForm.addEventListener("submit", function(e){
+            e.preventDefault()
+            strainCall.updateStrain(strain)
+        })
     }
 
-    updatedItemInfo(){
-        this.name = this.element.querySelector(".edit-name").value;
-        this.category = this.element.querySelector(".edit-category").value;
-        this.thc = this.element.querySelector(".edit-thc").value;
-        this.cbd = this.element.querySelector(".edit-cbd").value;
+    updatedStrainInfo(){
+        // this.name = this.element.querySelector(".edit-name").value;
+        // this.category = this.element.querySelector(".edit-category").value;
+        // this.thc = this.element.querySelector(".edit-thc").value;
+        // this.cbd = this.element.querySelector(".edit-cbd").value;
         strainCall.updateStrain(this)
         
     }
@@ -65,7 +87,7 @@ class Strain {
         }else if(e.target.innerText === "Save Strain"){
             console.log("save works")
             e.target.innerText = "Edit Strain"
-            this.updatedItemInfo()
+            this.updatedStrainInfo()
         }
     }
 

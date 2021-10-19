@@ -19,11 +19,12 @@
      e.preventDefault();
     //  debugger
      strainCall.createStrains()
-     e.target.reset();
-
-
-
-     
+     e.target.reset();    
  }
+
+
+
+
+ 
 
  
