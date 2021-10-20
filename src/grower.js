@@ -11,5 +11,7 @@ class Grower {
         option.value = this.id;
         option.innerText = this.name;
         dropDown.appendChild(option)
+        const optionTwo = option.cloneNode(true)
+        filterDropdown.appendChild(optionTwo)
     }
 }

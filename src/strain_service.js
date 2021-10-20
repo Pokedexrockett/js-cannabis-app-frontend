@@ -57,10 +57,6 @@ class StrainService {
             thc: strainContainer.querySelector(".edit-thc").value,
             cbd: strainContainer.querySelector(".edit-cbd").value
         }
-        // this.name = this.element.querySelector(".edit-name").value;
-        // this.category = this.element.querySelector(".edit-category").value;
-        // this.thc = this.element.querySelector(".edit-thc").value;
-        // this.cbd = this.element.querySelector(".edit-cbd").value;
 
         const configObject = {
             method: "PATCH",
@@ -81,11 +77,7 @@ class StrainService {
          strain.cbd = strainObject.cbd
          strain.render() 
         } )
-        // .then(data => {
-        //     // const s = new Strain(data)
-        //     strain.render()
-        // })
-        
+      
     }
 
     deleteStrain(e){

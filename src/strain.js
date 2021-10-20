@@ -12,7 +12,6 @@ class Strain {
         this.element = document.createElement('li');
         this.element.dataset['id'] = id;
         this.element.id = `strain-${id}`;
-        // this.element.addEventListener('click', this.handleClick)
         Strain.all.push(this)
         
 
@@ -26,11 +25,11 @@ class Strain {
     render(){
         this.element.innerHTML = `
         <div data-id="${this.id}" id="strain-container-${this.id}">
-        <h2 class="name">${this.name}</h2>
-        <p class="category">${this.category}</p>
-        <p class="thc">${this.thc}</p>
-        <p class="cbd">${this.cbd}</p>
-        <p class="grower">${this.grower.name}</p>
+        <h2 class="name">Name: ${this.name}</h2>
+        <p class="category">Category: ${this.category}</p>
+        <p class="thc">THC: ${this.thc}</p>
+        <p class="cbd">CBD: ${this.cbd}</p>
+        <p class="grower">Grower: ${this.grower.name}</p>
         </div>
         <button class="edit" data-id=${this.id}>Edit Strain</button>
         <button class="delete" data-id=${this.id}>Delete Strain</button>
@@ -38,6 +37,9 @@ class Strain {
         
         `
         this.element.querySelector(".edit").addEventListener("click", this.createEditForm)
+        this.element.querySelector(".delete").addEventListener("click", function(e){
+            strainCall.deleteStrain(e)
+        })
         return this.element
     }
 
@@ -45,11 +47,6 @@ class Strain {
         // debugger
         const div =document.getElementById(`strain-container-${this.dataset.id}`);
         const strain = Strain.findById(this.dataset.id)
-        // for(const element of div.children){
-        //     let inputValue = element.innerText;
-        //     let name = element.classList[0]
-        //     element.outerHTML = `<input type="text"  class="edit-${name}" value="${inputValue}" />`
-        // }
         const editForm = document.createElement("form")
         editForm.innerHTML = `
         <input type="text" class="edit-name" value="${strain.name}">
@@ -67,29 +64,8 @@ class Strain {
         })
     }
 
-    updatedStrainInfo(){
-        // this.name = this.element.querySelector(".edit-name").value;
-        // this.category = this.element.querySelector(".edit-category").value;
-        // this.thc = this.element.querySelector(".edit-thc").value;
-        // this.cbd = this.element.querySelector(".edit-cbd").value;
-        strainCall.updateStrain(this)
-        
-    }
+ 
 
-    handleClick = (e) => {
-        if(e.target.innerText === "Edit Strain"){
-            console.log(e.target)
-            e.target.innerText = "Save Strain"
-            this.createEditForm()
-        }else if(e.target.innerText === "Delete Strain"){
-            console.log(e.target)
-            strainCall.deleteStrain(e)
-        }else if(e.target.innerText === "Save Strain"){
-            console.log("save works")
-            e.target.innerText = "Edit Strain"
-            this.updatedStrainInfo()
-        }
-    }
 
     
 
